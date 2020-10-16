@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delta", "Delta.csproj", "{E06D8AA5-540C-4E74-BA6D-B8727E1EAB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta", "Delta.csproj", "{E06D8AA5-540C-4E74-BA6D-B8727E1EAB35}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DE3FB9D-129C-426C-AE65-FE2CFE2B2882}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

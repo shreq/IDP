@@ -3,7 +3,7 @@
     static class Settings
     {
         public static uint NumberOfInputs = 10;
-        public static uint NumberOfEpochs = 1_000;
+        public static uint NumberOfEpochs = 10_000;
         public static float TrainingStep = 0.01f;
 
         public static float WeightMin = 0.1f;
