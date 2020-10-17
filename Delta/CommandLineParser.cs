@@ -51,6 +51,13 @@ namespace Delta
             HelpText = "\nInput/Desired output maximum value (inclusive)")]
         public float ValueMax { get; set; }
 
+        public bool VerboseOutput => VerboseOutput_ != 'F';
+
+        [Option('v', "verbose",
+            Default = 'T',
+            HelpText = "\nChoose [T]rue to provide more detailed output. Otherwise choose [F]alse")]
+        public char VerboseOutput_ { get; set; }
+
         public static void UpdateSettings(CommandLineParser commandLineParser)
         {
             Settings.Scenario = commandLineParser.Scenario;
@@ -62,6 +69,7 @@ namespace Delta
             Settings.WeightMax = commandLineParser.WeightMax;
             Settings.ValueMin = commandLineParser.ValueMin;
             Settings.ValueMax = commandLineParser.ValueMax;
+            Settings.VerboseOutput = commandLineParser.VerboseOutput;
         }
     }
 }

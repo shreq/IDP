@@ -19,6 +19,8 @@
         public const float weightMaxDefault = 0.9f;
         public const float valueMinDefault = 0f;
         public const float valueMaxDefault = 1f;
+
+        public const bool verboseOutputDefault = true;
         #endregion default values
 
         #region active values
@@ -32,6 +34,8 @@
         public static float WeightMax = weightMaxDefault;
         public static float ValueMin = valueMinDefault;
         public static float ValueMax = valueMaxDefault;
+
+        public static bool VerboseOutput = verboseOutputDefault;
         #endregion active values
     }
 }

@@ -45,12 +45,15 @@ namespace Delta
                 neuron.Train();
             }
 
-            Console.WriteLine("Input values:");
-            PrintLists("  ", neuron.TrainingPattern.Inputs);
+            if (VerboseOutput)
+            {
+                Console.WriteLine("Input values:");
+                PrintLists("  ", neuron.TrainingPattern.Inputs);
 
-            Console.WriteLine("\nWeights:\n" +
-                "  Initial \tFinal");
-            PrintLists("  ", initialWeights, neuron.Weights);
+                Console.WriteLine("\nWeights:\n" +
+                    "  Initial \tFinal");
+                PrintLists("  ", initialWeights, neuron.Weights);
+            }
 
             Console.WriteLine("\nOutput values:\n" +
                 "  Initial \tFinal \t\t Target  \tError");
@@ -69,12 +72,15 @@ namespace Delta
                 neuron.Train();
             }
 
-            Console.WriteLine("Input values:");
-            PrintLists("  ", neuron.TrainingPattern.AggregateInputs());
+            if (VerboseOutput)
+            {
+                Console.WriteLine("Input values:");
+                PrintLists("  ", neuron.TrainingPattern.AggregateInputs());
 
-            Console.WriteLine("\nWeights:\n" +
-                "  Initial \tFinal");
-            PrintLists("  ", initialWeights, neuron.Weights);
+                Console.WriteLine("\nWeights:\n" +
+                    "  Initial \tFinal");
+                PrintLists("  ", initialWeights, neuron.Weights);
+            }
 
             Console.WriteLine("\nOutput values:\n" +
                 "  Initial \tFinal \t\tTarget  \tError");
