@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delta.Neural;
+using System;
 using System.Collections;
 
 namespace Delta
@@ -15,22 +16,59 @@ namespace Delta
             (float)(1 - random.NextDouble()) * (max - min) + min;
         #endregion random
 
-        public static void PrintCollection(IEnumerable enumerable)
+        public static void PrintLists(string indentation, params IList[] lists)
         {
-            foreach (var e in enumerable)
+            for (int i = 0; i < lists[0].Count; i++)
             {
-                Console.WriteLine(e);
+                Console.Write(indentation);
+                for (uint li = 0; li < lists.Length; li++)
+                {
+                    Console.Write(string.Format("{0:F5}  ", lists[li][i]) + "\t");
+                }
+                Console.WriteLine();
             }
         }
 
-        public static void PrintCollection(IList listLeft, IList listRight, string indentation = "")
+        public static void PrintValues(string indentation, params float[] values)
         {
-            if (listLeft.Count != listRight.Count) throw new InvalidOperationException("Lists must be the same size");
-
-            for (int i = 0; i < listLeft.Count; i++)
+            Console.Write(indentation);
+            for (uint i = 0; i < values.Length; i++)
             {
-                Console.WriteLine(indentation + listLeft[i] + "\t" + listRight[i]);
+                Console.Write(string.Format("{0:F5}  ", values[i]) + "\t");
             }
+            Console.WriteLine();
         }
+
+        #region extension methods
+        public static float[] AggregateOutputs(this TrainingPattern[] trainingPattern)
+        {
+            var result = new float[trainingPattern.Length];
+            for (uint i = 0; i < trainingPattern.Length; i++)
+            {
+                result[i] = trainingPattern[i].TargetOutput;
+            }
+            return result;
+        }
+
+        public static float[][] AggregateInputs(this TrainingPattern[] trainingPattern)
+        {
+            var result = new float[trainingPattern.Length][];
+            for (uint i = 0; i < trainingPattern.Length; i++)
+            {
+                result[i] = trainingPattern[i].Inputs;
+            }
+            return result;
+        }
+
+        public static float SquaredMean(this float[] array)
+        {
+            var result = 0f;
+            for (uint i = 0; i < array.Length; i++)
+            {
+                result += array[i] * array[i];
+            }
+            return result / array.Length;
+        }
+        #endregion extension methods
     }
 }

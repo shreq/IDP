@@ -1,14 +1,37 @@
 ﻿namespace Delta
 {
+    enum PatternScenario
+    {
+        SinglePattern,
+        MultiPattern
+    }
+
     static class Settings
     {
-        public static uint NumberOfInputs = 10;
-        public static uint NumberOfEpochs = 10_000;
-        public static float TrainingStep = 0.01f;
+        #region default values
+        public const PatternScenario scenarioDefault = PatternScenario.SinglePattern;
+        public const uint numberOfPatternsDefault = 5;
+        public const uint numberOfInputsDefault = 10;
+        public const uint numberOfEpochsDefault = 10_000;
+        public const float trainingStepDefault = 0.0001f;
 
-        public static float WeightMin = 0.1f;
-        public static float WeightMax = 0.9f;
-        public static float ValueMin;
-        public static float ValueMax = 1f;
+        public const float weightMinDefault = 0.1f;
+        public const float weightMaxDefault = 0.9f;
+        public const float valueMinDefault = 0f;
+        public const float valueMaxDefault = 1f;
+        #endregion default values
+
+        #region active values
+        public static PatternScenario Scenario = scenarioDefault;
+        public static uint NumberOfPatterns = numberOfPatternsDefault;
+        public static uint NumberOfInputs = numberOfInputsDefault;
+        public static uint NumberOfEpochs = numberOfEpochsDefault;
+        public static float TrainingStep = trainingStepDefault;
+
+        public static float WeightMin = weightMinDefault;
+        public static float WeightMax = weightMaxDefault;
+        public static float ValueMin = valueMinDefault;
+        public static float ValueMax = valueMaxDefault;
+        #endregion active values
     }
 }

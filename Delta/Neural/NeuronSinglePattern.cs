@@ -1,6 +1,7 @@
-﻿using static Delta.Settings;
+﻿using System;
+using static Delta.Settings;
 
-namespace Delta
+namespace Delta.Neural
 {
     class NeuronSinglePattern : NeuronBase<TrainingPattern, float>
     {
@@ -10,13 +11,14 @@ namespace Delta
             get
             {
                 var result = 0f;
-                for (int i = 0; i < NumberOfInputs; i++)
+                for (uint i = 0; i < NumberOfInputs; i++)
                 {
                     result += TrainingPattern.Inputs[i] * Weights[i];
                 }
                 return result;
             }
         }
+        public override float Error => Math.Abs(TrainingPattern.TargetOutput - Output);
 
         public NeuronSinglePattern() : base() =>
             TrainingPattern = new TrainingPattern();
@@ -25,7 +27,7 @@ namespace Delta
         {
             var output = Output;
 
-            for (int i = 0; i < NumberOfInputs; i++)
+            for (uint i = 0; i < NumberOfInputs; i++)
             {
                 Weights[i] += TrainingStep * (TrainingPattern.TargetOutput - output) * TrainingPattern.Inputs[i];
             }

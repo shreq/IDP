@@ -1,7 +1,7 @@
 ﻿using static Delta.Settings;
 using static Delta.Utils;
 
-namespace Delta
+namespace Delta.Neural
 {
     class TrainingPattern
     {

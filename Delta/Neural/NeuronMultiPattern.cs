@@ -1,6 +1,7 @@
-﻿using static Delta.Settings;
+﻿using System;
+using static Delta.Settings;
 
-namespace Delta
+namespace Delta.Neural
 {
     class NeuronMultiPattern : NeuronBase<TrainingPattern[], float[]>
     {
@@ -10,9 +11,9 @@ namespace Delta
             get
             {
                 var result = new float[TrainingPattern.Length];
-                for (int tpi = 0; tpi < TrainingPattern.Length; tpi++)
+                for (uint tpi = 0; tpi < TrainingPattern.Length; tpi++)
                 {
-                    for (int i = 0; i < NumberOfInputs; i++)
+                    for (uint i = 0; i < NumberOfInputs; i++)
                     {
                         result[tpi] += TrainingPattern[tpi].Inputs[i] * Weights[i];
                     }
@@ -20,14 +21,15 @@ namespace Delta
                 return result;
             }
         }
-        public float[] TargetOutputs
+        public override float[] Error
         {
             get
             {
                 var result = new float[TrainingPattern.Length];
-                for (int tpi = 0; tpi < TrainingPattern.Length; tpi++)
+                var output = Output;
+                for (uint tpi = 0; tpi < TrainingPattern.Length; tpi++)
                 {
-                    result[tpi] = TrainingPattern[tpi].TargetOutput;
+                    result[tpi] = Math.Abs(TrainingPattern[tpi].TargetOutput - output[tpi]);
                 }
                 return result;
             }
@@ -36,7 +38,7 @@ namespace Delta
         public NeuronMultiPattern(uint numberOfPatterns) : base()
         {
             TrainingPattern = new TrainingPattern[numberOfPatterns];
-            for (int tpi = 0; tpi < numberOfPatterns; tpi++)
+            for (uint tpi = 0; tpi < numberOfPatterns; tpi++)
             {
                 TrainingPattern[tpi] = new TrainingPattern();
             }
@@ -46,9 +48,9 @@ namespace Delta
         {
             var output = Output;
 
-            for (int tpi = 0; tpi < TrainingPattern.Length; tpi++)
+            for (uint tpi = 0; tpi < TrainingPattern.Length; tpi++)
             {
-                for (int i = 0; i < NumberOfInputs; i++)
+                for (uint i = 0; i < NumberOfInputs; i++)
                 {
                     Weights[i] += TrainingStep * (TrainingPattern[tpi].TargetOutput - output[tpi]) * TrainingPattern[tpi].Inputs[i];
                 }
