@@ -8,17 +8,25 @@ namespace Delta
 
         [Option('s', "scenario",
             Default = 'S',
-            HelpText = "\nChoose between [S]ingle Training Pattern and [M]ultiple Training Patterns scenarios")]
+            HelpText = "\nChoose between [S]ingle Training Pattern and [M]ultiple Training Patterns scenarios.\n" +
+            "Ignored if filepath was provided")]
         public char Scenario_ { get; set; }
+
+        [Option('f', "filepath",
+            HelpText = "\nProvide file with values. Accepted format is a rectangular matrix where rows are training patterns and columns are values where last one is desired output.\n" +
+            "First two rows of file are ignored!")]
+        public string Filepath { get; set; }
 
         [Option('p', "patterns",
             Default = Settings.numberOfPatternsDefault,
-            HelpText = "\nNumber of patterns. Works only with Multiple Training Patterns scenario")]
+            HelpText = "\nNumber of patterns. Works only with Multiple Training Patterns scenario.\n" +
+            "Ignored if filepath was provided")]
         public uint NumberOfPatterns { get; set; }
 
         [Option('i', "inputs",
             Default = Settings.numberOfInputsDefault,
-            HelpText = "\nNumber of inputs")]
+            HelpText = "\nNumber of inputs.\n" +
+            "Ignored if filepath was provided")]
         public uint NumberOfInputs { get; set; }
 
         [Option('e', "epochs",
@@ -33,22 +41,26 @@ namespace Delta
 
         [Option("wmin",
             Default = Settings.weightMinDefault,
-            HelpText = "\nWeight minimum value (exclusive)")]
+            HelpText = "\nWeight minimum value (exclusive)\n" +
+            "Ignored if filepath was provided")]
         public float WeightMin { get; set; }
 
         [Option("wmax",
             Default = Settings.weightMaxDefault,
-            HelpText = "\nWeight maximum value (inclusive)")]
+            HelpText = "\nWeight maximum value (inclusive)\n" +
+            "Ignored if filepath was provided")]
         public float WeightMax { get; set; }
 
         [Option("vmin",
             Default = Settings.valueMinDefault,
-            HelpText = "\nInput/Desired output minimum value (exclusive)")]
+            HelpText = "\nInput/Desired output minimum value (exclusive)\n" +
+            "Ignored if filepath was provided")]
         public float ValueMin { get; set; }
 
         [Option("vmax",
             Default = Settings.valueMaxDefault,
-            HelpText = "\nInput/Desired output maximum value (inclusive)")]
+            HelpText = "\nInput/Desired output maximum value (inclusive)\n" +
+            "Ignored if filepath was provided")]
         public float ValueMax { get; set; }
 
         public bool VerboseOutput => VerboseOutput_ != 'F';

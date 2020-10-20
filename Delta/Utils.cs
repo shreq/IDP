@@ -1,6 +1,8 @@
 ﻿using Delta.Neural;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace Delta
 {
@@ -16,6 +18,7 @@ namespace Delta
             (float)(1 - random.NextDouble()) * (max - min) + min;
         #endregion random
 
+        #region printers
         public static void PrintLists(string indentation, params IList[] lists)
         {
             for (int i = 0; i < lists[0].Count; i++)
@@ -38,6 +41,7 @@ namespace Delta
             }
             Console.WriteLine();
         }
+        #endregion printers
 
         #region extension methods
         public static float[] AggregateOutputs(this TrainingPattern[] trainingPattern)
@@ -68,6 +72,20 @@ namespace Delta
                 result += array[i] * array[i];
             }
             return result / array.Length;
+        }
+
+        public static List<float> ParseToReals(this string s)
+        {
+            var splitted = s.Split(' ');
+            var result = new List<float>();
+            for (int i = 0; i < splitted.Length; i++)
+            {
+                if (float.TryParse(splitted[i], NumberStyles.Any, CultureInfo.InvariantCulture.NumberFormat, out float value))
+                {
+                    result.Add(value);
+                }
+            }
+            return result;
         }
         #endregion extension methods
     }

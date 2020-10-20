@@ -3,7 +3,8 @@
     enum PatternScenario
     {
         SinglePattern,
-        MultiPattern
+        MultiPattern,
+        File
     }
 
     static class Settings

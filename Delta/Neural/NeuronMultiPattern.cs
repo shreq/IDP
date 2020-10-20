@@ -35,6 +35,7 @@ namespace Delta.Neural
             }
         }
 
+        #region constructors
         public NeuronMultiPattern(uint numberOfPatterns) : base()
         {
             TrainingPattern = new TrainingPattern[numberOfPatterns];
@@ -43,6 +44,10 @@ namespace Delta.Neural
                 TrainingPattern[tpi] = new TrainingPattern();
             }
         }
+
+        public NeuronMultiPattern(TrainingPattern[] trainingPattern) : base() =>
+            TrainingPattern = trainingPattern;
+        #endregion constructors
 
         public override void Train()
         {

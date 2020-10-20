@@ -19,5 +19,11 @@ namespace Delta.Neural
 
             TargetOutput = RandomReal(ValueMin, ValueMax);
         }
+
+        public TrainingPattern(float[] inputs, float targetOutput)
+        {
+            Inputs = inputs;
+            TargetOutput = targetOutput;
+        }
     }
 }

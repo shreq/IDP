@@ -20,8 +20,13 @@ namespace Delta.Neural
         }
         public override float Error => Math.Abs(TrainingPattern.TargetOutput - Output);
 
+        #region constructors
         public NeuronSinglePattern() : base() =>
             TrainingPattern = new TrainingPattern();
+
+        public NeuronSinglePattern(TrainingPattern trainingPattern) : base() =>
+            TrainingPattern = trainingPattern;
+        #endregion constructors
 
         public override void Train()
         {
