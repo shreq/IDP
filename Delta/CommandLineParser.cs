@@ -4,7 +4,7 @@ namespace Delta
 {
     class CommandLineParser
     {
-        public PatternScenario Scenario => Scenario_ == 'M' ? PatternScenario.MultiPattern : PatternScenario.SinglePattern;
+        public PatternScenario Scenario => Scenario_ == 'M' || Scenario_ == 'm' ? PatternScenario.MultiPattern : PatternScenario.SinglePattern;
 
         [Option('s', "scenario",
             Default = 'S',
@@ -63,7 +63,7 @@ namespace Delta
             "Ignored if filepath was provided")]
         public float ValueMax { get; set; }
 
-        public bool VerboseOutput => VerboseOutput_ != 'F';
+        public bool VerboseOutput => VerboseOutput_ != 'F' && VerboseOutput_ != 'f';
 
         [Option('v', "verbose",
             Default = 'T',

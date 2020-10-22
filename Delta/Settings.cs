@@ -16,9 +16,9 @@
         public const uint numberOfEpochsDefault = 10_000;
         public const float trainingStepDefault = 0.0001f;
 
-        public const float weightMinDefault = 0.1f;
-        public const float weightMaxDefault = 0.9f;
-        public const float valueMinDefault = 0f;
+        public const float weightMinDefault = -1f;
+        public const float weightMaxDefault = 1f;
+        public const float valueMinDefault = -1f;
         public const float valueMaxDefault = 1f;
 
         public const bool verboseOutputDefault = true;
