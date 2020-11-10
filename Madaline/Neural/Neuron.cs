@@ -1,15 +1,11 @@
-﻿using System;
-using static Madaline.Settings;
-using static Madaline.Utils;
-
-namespace Madaline.Neural
+﻿namespace Madaline.Neural
 {
     class Neuron
     {
-        public float[] Inputs { get; private set; }
-        public float[] Weights { get; private set; }
-        public Func<float, float> ActivationFunction { get; private set; }
-        public float AdderOutput
+        public string Identifier { get; }
+        public float[] Inputs { get; set; }
+        public float[] Weights { get; }
+        public float Output
         {
             get
             {
@@ -22,27 +18,10 @@ namespace Madaline.Neural
             }
         }
 
-        #region constructors
-        public Neuron(int inputSize, Func<float, float> activationFunction)
+        public Neuron(TemplatePattern templatePattern)
         {
-            Inputs = new float[inputSize];
-            for (int i = 0; i < inputSize; i++)
-            {
-                Inputs[i] = RandomFloat(ValueMin, ValueMax);
-            }
-            Weights = new float[inputSize];
-            for (int i = 0; i < inputSize; i++)
-            {
-                Weights[i] = RandomFloat(WeightMin, WeightMax);
-            }
-            ActivationFunction = activationFunction;
+            Weights = templatePattern.Inputs.Normalized();
+            Identifier = templatePattern.Identifier;
         }
-
-        public Neuron(float[] inputs, Func<float, float> activationFunction)
-        {
-            Inputs = (float[])inputs.Clone();
-            ActivationFunction = activationFunction;
-        }
-        #endregion constructors
     }
 }

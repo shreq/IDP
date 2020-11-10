@@ -1,21 +1,37 @@
-﻿using System;
-
-namespace Madaline.Neural
+﻿namespace Madaline.Neural
 {
     class Layer
     {
-        public Neuron[] Neurons { get; private set; }
-        public float[] Outputs { get; }
-
-        #region constructors
-        public Layer(int layerSize, int inputSize, Func<float, float> activationFunction)
+        public Neuron[] Neurons { get; }
+        public float[] Outputs
         {
-            Neurons = new Neuron[layerSize];
-            for (int i = 0; i < layerSize; i++)
+            get
             {
-                Neurons[i] = new Neuron(inputSize, activationFunction);
+                var outputs = new float[Neurons.Length];
+                for (int i = 0; i < Neurons.Length; i++)
+                {
+                    outputs[i] = Neurons[i].Output;
+                }
+                return outputs;
             }
         }
-        #endregion constructors
+
+        public Layer(TemplatePattern[] templatePatterns)
+        {
+            Neurons = new Neuron[templatePatterns.Length];
+
+            for (int i = 0; i < templatePatterns.Length; i++)
+            {
+                Neurons[i] = new Neuron(templatePatterns[i]);
+            }
+        }
+
+        public void SetInputs(float[] inputs)
+        {
+            for (int i = 0; i < Neurons.Length; i++)
+            {
+                Neurons[i].Inputs = (float[])inputs.Clone();
+            }
+        }
     }
 }
