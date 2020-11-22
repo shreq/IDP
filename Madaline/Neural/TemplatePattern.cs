@@ -9,6 +9,6 @@
         {
             Inputs = inputs;
             Identifier = identifier;
-        }
+        }     
     }
 }
