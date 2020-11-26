@@ -1,9 +1,10 @@
 ﻿using Madaline.Neural;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+
 namespace Madaline
 {
     static class Utils
@@ -33,9 +34,8 @@ namespace Madaline
         public static Neuron[] Sorted(this Neuron[] neurons) =>
             neurons.OrderBy(x => x.Output).ToArray();
 
-        public static float[] fileToArray(string fileName)
+        public static float[] FileToArray(string fileName)
         {
-
             List<float> fl = new List<float>();
 
             using (Stream stream = File.Open(@fileName, FileMode.Open))

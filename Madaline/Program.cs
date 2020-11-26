@@ -7,19 +7,40 @@ namespace Madaline
     {
         static void Main(string[] args)
         {
-            if (args is null) throw new ArgumentException();
-            string path =  args[0];
-            string identifier = args[1];
- 
+            TemplatePattern[] templatePatterns;
 
-            var templatePatterns = new TemplatePattern[]
-            {               
-                new TemplatePattern(
-                     Utils.fileToArray(path), identifier)
-            };
+            if (args.Length != 2)
+            {
+                //throw new ArgumentException("Provide arguments:\n" +
+                //    "1. Path for file with template pattern\n" +
+                //    "2. Identifier of template pattern");
+                templatePatterns = new TemplatePattern[4]
+                {
+                    new TemplatePattern(Utils.FileToArray("../../../Data/1.txt"), "1"),
+                    new TemplatePattern(Utils.FileToArray("../../../Data/X.txt"), "X"),
+                    new TemplatePattern(Utils.FileToArray("../../../Data/Y.txt"), "Y"),
+                    new TemplatePattern(Utils.FileToArray("../../../Data/Z.txt"), "Z")
+                };
+            }
+            else
+            {
+                string path = args[0];
+                string identifier = args[1];
+
+                templatePatterns = new TemplatePattern[]
+                {
+                    new TemplatePattern(Utils.FileToArray(path), identifier)
+                };
+            }
 
             var network = new Network(templatePatterns);
-            network.Run(); 
+            var output = network.Run();
+
+            Console.WriteLine("Target : Result");
+            for (int i = 0; i < output.Length; i++)
+            {
+                Console.WriteLine(templatePatterns[i].Identifier + " : " + output[i].Identifier);
+            }
         }
     }
 }
