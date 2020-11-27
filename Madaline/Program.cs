@@ -36,11 +36,16 @@ namespace Madaline
             var network = new Network(templatePatterns);
             var output = network.Run();
 
-            Console.WriteLine("Target : Result");
-            for (int i = 0; i < output.Length; i++)
-            {
-                Console.WriteLine(templatePatterns[i].Identifier + " : " + output[i].Identifier);
-            }
+            //for (int i = 0; i < output.Length; i++)
+            //{
+            //    Console.WriteLine($"Target: {templatePatterns[i].Identifier}\n" +
+            //        $"Network (output, corresponding identifier):");
+            //    for (int j = 0; j < output[i].Length; j++)
+            //    {
+            //        Console.WriteLine($"{output[i][j].Output}, {output[i][j].Identifier}");
+            //    }
+            //    Console.WriteLine();
+            //}
         }
     }
 }

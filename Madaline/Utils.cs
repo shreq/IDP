@@ -32,7 +32,7 @@ namespace Madaline
         }
 
         public static Neuron[] Sorted(this Neuron[] neurons) =>
-            neurons.OrderBy(x => x.Output).ToArray();
+            neurons.OrderBy(x => -x.Output).ToArray();
 
         public static float[] FileToArray(string fileName)
         {
