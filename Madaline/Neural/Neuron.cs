@@ -1,4 +1,5 @@
-﻿namespace Madaline.Neural
+﻿using System;
+namespace Madaline.Neural
 {
     class Neuron
     {
@@ -9,10 +10,22 @@
         {
             get
             {
+                var countNonZero = 0;
+                for (int i = 0; i < Inputs.Length; i++)
+                {
+                    if (Inputs[i] != 0f)
+                    {
+                        countNonZero++;
+                    }
+                }
+
+                var sqrt = (float)Math.Sqrt(countNonZero);
                 var result = 0f;
                 for (int i = 0; i < Inputs.Length; i++)
                 {
-                    result += Inputs[i] * Weights[i];
+                            
+                 result += Inputs[i]/sqrt * Weights[i];
+                    
                 }
                 return result;
             }
