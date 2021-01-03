@@ -1,5 +1,4 @@
-﻿using static Perceptron.Settings;
-using static Perceptron.Utils;
+﻿using static Perceptron.Utils;
 
 namespace Perceptron.Neural
 {
